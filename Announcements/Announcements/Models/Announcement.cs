@@ -1,4 +1,4 @@
-﻿namespace Announcements.Data
+﻿namespace Announcements.Models
 {
     public class Announcement
     {

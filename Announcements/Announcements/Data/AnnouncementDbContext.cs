@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Announcements.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Announcements.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class AnnouncementDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public AnnouncementDbContext(DbContextOptions<AnnouncementDbContext> options)
             : base(options)
         {
         }
