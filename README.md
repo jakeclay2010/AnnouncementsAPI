@@ -1,2 +1,2 @@
 # AnnouncementsAPI
-Swagger endpoint is https://localhost:<port>/swagger
+Swagger endpoint is localhost/swagger
