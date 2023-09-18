@@ -23,7 +23,7 @@ namespace Announcements.Data
 
         public void DeleteAnnouncement(int id)
         {
-            if (!announcements.ContainsKey(id))
+            if (announcements.ContainsKey(id))
             {
                 announcements.Remove(id);
             }
