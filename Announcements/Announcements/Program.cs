@@ -7,7 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "AnnouncementsAPI", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "AnnouncementsAPI",
+        Version = "v1",
+        Contact = new OpenApiContact
+        {
+            Name = "Jacob Claytor",
+            Email = "jacob.c.claytor@gmail.com",
+            Url = new Uri("https://github.com/jakeclay2010/AnnouncementsAPI")
+        },
+    });
 });
 builder.Services.AddScoped<IAnnouncementRepository, AnnouncementLocalStorage>();
 
