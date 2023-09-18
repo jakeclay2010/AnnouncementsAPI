@@ -16,7 +16,13 @@ public class AnnouncementsController : ControllerBase
         }
     }
 
-    // Implement CRUD operations (GET, POST, PUT, DELETE) here
+    [HttpGet]
+    public IActionResult GetAnnouncements(int page = 1, int pageSize = 10)
+    {
+        var announcements = _repository.GetAnnouncements(page, pageSize);
+        return Ok(announcements);
+    }
+
     [HttpGet("{id}")]
     public IActionResult GetAnnouncement(int id)
     {
@@ -34,7 +40,31 @@ public class AnnouncementsController : ControllerBase
             return BadRequest(ModelState);
 
         _repository.CreateAnnouncement(announcement);
-        return CreatedAtAction(nameof(GetAnnouncement), new { id = announcement.id }, announcement);
+        return Ok();
     }
 
+    [HttpPut("{id}")]
+    public IActionResult UpdateAnnouncement(int id, [FromBody] Announcement announcement)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var existingAnnouncement = _repository.GetAnnouncementById(id);
+        if (existingAnnouncement == null)
+            return NotFound();
+
+        _repository.UpdateAnnouncement(id, announcement);
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteAnnouncement(int id)
+    {
+        var existingAnnouncement = _repository.GetAnnouncementById(id);
+        if (existingAnnouncement == null)
+            return NotFound();
+
+        _repository.DeleteAnnouncement(id);
+        return Ok();
+    }
 }
